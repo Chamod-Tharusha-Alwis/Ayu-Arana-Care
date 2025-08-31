@@ -71,6 +71,6 @@ To get a local copy up and running, follow these simple steps.
 
 ## Contact
 
-[cite_start]Chamod Tharusha Alwis - [linkedin.com/in/chamod-alwis](https://linkedin.com/in/chamod-alwis) [cite: 5]
+Chamod Tharusha Alwis - [linkedin.com/in/chamod-alwis](https://linkedin.com/in/chamod-alwis)
 
 Project Link: [https://github.com/Chamod-Tharusha-Alwis/Ayu-Arana-Care](https://github.com/Chamod-Tharusha-Alwis/Ayu-Arana-Care)

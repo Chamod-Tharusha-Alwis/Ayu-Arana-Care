@@ -1,25 +1,25 @@
 # Auy Arana Care - Elders' Care Home Management System
 
-[cite_start]A comprehensive full-stack web application designed to digitize and streamline the daily operations of an elders' care facility[cite: 35]. This project was built from the ground up to provide an efficient, user-friendly solution for managing resident data, staff schedules, and medical information.
+A comprehensive full-stack web application designed to digitize and streamline the daily operations of an elders' care facility. This project was built from the ground up to provide an efficient, user-friendly solution for managing resident data, staff schedules, and medical information.
 ---
 
 ## Key Features
 
-* [cite_start]**Secure Authentication:** Built a secure user authentication system with password hashing for users and administrators[cite: 40].
-* [cite_start]**Role-Based Access:** Implemented a responsive, role-based user interface using React.js for managing resident profiles, medical records,payments , Membership management[cite: 39].
+* **Secure Authentication:** Built a secure user authentication system with password hashing for users and administrators.
+* **Role-Based Access:** Implemented a responsive, role-based user interface using React.js for managing resident profiles, medical records,payments , Membership management.
 * **Resident Management:** Full CRUD (Create, Read, Update, Delete) functionality for managing detailed resident profiles.
-* [cite_start]**RESTful API:** Developed a secure RESTful API using Node.js and Express.js for handling all data manipulations and backend logic[cite: 38].
-* [cite_start]**Efficient Database:** Integrated a MongoDB database for efficient, scalable storage and retrieval of all application data[cite: 41].
+* **RESTful API:** Developed a secure RESTful API using Node.js and Express.js for handling all data manipulations and backend logic.
+* **Efficient Database:** Integrated a MongoDB database for efficient, scalable storage and retrieval of all application data.
 
 ---
 
 ## Technologies Used
 
-[cite_start]This project was built with the MERN stack and styled with Tailwind CSS[cite: 34].
+This project was built with the MERN stack and styled with Tailwind CSS.
 
-* [cite_start]**Frontend:** React.js, HTML5, CSS3, Tailwind CSS [cite: 30, 34]
-* [cite_start]**Backend:** Node.js, Express.js [cite: 24, 34]
-* [cite_start]**Database:** MongoDB [cite: 32, 34]
+* **Frontend:** React.js, HTML5, CSS3, Tailwind CSS
+* **Backend:** Node.js, Express.js 
+* **Database:** MongoDB 
 
 ---
 

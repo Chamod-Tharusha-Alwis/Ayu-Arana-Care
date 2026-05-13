@@ -7,7 +7,7 @@ import { // <-- Named imports
     createFeedback,
     updateHomeDisplayStatus,
     deleteFeedback
-} from '../controllers/feedbackcontroller.js';
+} from '../controllers/feedbackController.js';
 
 router.get('/all', getAllFeedback);
 router.get('/home', getHomePageFeedback);

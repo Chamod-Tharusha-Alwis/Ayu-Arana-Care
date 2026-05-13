@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserPlusIcon, UserGroupIcon, PhoneIcon, EnvelopeIcon, MapPinIcon, CakeIcon, ShieldCheckIcon, IdentificationIcon } from '@heroicons/react/24/outline';
+import { API_URL } from '../../config/api';
 
 // A reusable input component for our form
 const FormInput = ({ icon, label, name, type = 'text', value, onChange, required = true }) => {
@@ -54,7 +55,7 @@ export default function AdminParentRegistrationPage() {
         const fetchParents = async () => {
             setLoading(true);
             try {
-                const response = await fetch('/api/parents');
+                const response = await fetch(`${API_URL}/parents`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch parents');
                 }
@@ -92,7 +93,7 @@ export default function AdminParentRegistrationPage() {
         setSuccess('');
 
         try {
-            const response = await fetch('/api/parents', {
+            const response = await fetch(`${API_URL}/parents`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

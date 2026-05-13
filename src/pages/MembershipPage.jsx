@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
 import { CheckCircleIcon, XMarkIcon, StarIcon, CreditCardIcon, CalendarIcon, LockClosedIcon, UserIcon } from '@heroicons/react/24/solid';
 import { useAuth } from '../context/UserContext.jsx';
+import { API_URL } from '../config/api';
 
 // This data can be fetched from your backend API in a real application.
 const plans = [
@@ -76,7 +77,7 @@ export default function MembershipPage() {
    setError('');
    
    try {
-    const response = await fetch('/api/membership', {
+    const response = await fetch(`${API_URL}/membership`, {
      headers: { 'Authorization': `Bearer ${token}` }
     });
     
@@ -119,7 +120,7 @@ export default function MembershipPage() {
   const selectedPlan = plans.find(p => p.id === selectedPlanId);
 
   try {
-   const response = await fetch('/api/payments/membership', {
+   const response = await fetch(`${API_URL}/payments/membership`, {
     method: 'POST',
     headers: {
      'Content-Type': 'application/json',

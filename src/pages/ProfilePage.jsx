@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config/api';
 import { 
     UserCircleIcon, 
     PencilSquareIcon, 
@@ -59,7 +60,7 @@ export default function ProfilePage() {
             }
 
             try {
-                const response = await fetch('/api/users/profile', {
+                const response = await fetch(`${API_URL}/users/profile`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (!response.ok) throw new Error('Failed to fetch profile data.');
@@ -90,7 +91,7 @@ export default function ProfilePage() {
         const token = localStorage.getItem('userToken');
         setLoading(true);
         try {
-            const response = await fetch('/api/users/profile', {
+            const response = await fetch(`${API_URL}/users/profile`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

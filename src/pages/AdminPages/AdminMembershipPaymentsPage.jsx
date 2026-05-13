@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { EnvelopeIcon, ClockIcon } from '@heroicons/react/24/outline';
 import { useAuth } from '../../context/UserContext'; // We can still use this for other context values if needed
+import { API_URL } from '../../config/api';
 
 const getStatusChip = (status) => {
     const styles = {
@@ -33,7 +34,7 @@ export default function AdminMembershipPaymentsPage() {
             setError('');
 
             try {
-                const response = await fetch('/api/admin/memberships', {
+                const response = await fetch(`${API_URL}/admin/memberships`, {
                     headers: { 'Authorization': `Bearer ${adminToken}` }
                 });
                 if (!response.ok) {
@@ -59,7 +60,7 @@ export default function AdminMembershipPaymentsPage() {
 
         setSending(userId);
         try {
-            const response = await fetch(`/api/admin/reminders/${userId}`, {
+            const response = await fetch(`${API_URL}/admin/reminders/${userId}`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${adminToken}` }
             });

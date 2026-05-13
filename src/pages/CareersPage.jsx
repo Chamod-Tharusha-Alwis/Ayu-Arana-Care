@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDownIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
 import { animated, useSpring } from "@react-spring/web";
 import { Transition } from '@headlessui/react';
+import { API_URL } from '../config/api';
 
 // Sub-component for animated branch content to follow hook rules
 const BranchContent = ({ branch, openRole, toggleRole }) => {
@@ -81,7 +82,7 @@ const CareersPage = () => {
             setLoading(true);
             setError(null);
             try {
-                const res = await fetch('/api/careers');
+                const res = await fetch(`${API_URL}/careers`);
                 if (!res.ok) {
                     const errorData = await res.json();
                     throw new Error(errorData.message || 'Failed to fetch career opportunities.');

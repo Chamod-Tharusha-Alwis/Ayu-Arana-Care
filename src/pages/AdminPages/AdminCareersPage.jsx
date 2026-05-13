@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { PlusCircleIcon, PencilSquareIcon, TrashIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { Transition } from '@headlessui/react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config/api';
 import { useAuth } from '../../context/UserContext'; // Using useAuth from your context
 
 const AdminCareersPage = () => {
@@ -48,7 +49,7 @@ const AdminCareersPage = () => {
                 return;
             }
 
-            const res = await fetch('/api/careers/admin', {
+            const res = await fetch(`${API_URL}/careers/admin`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -98,7 +99,7 @@ const AdminCareersPage = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('adminToken'); // <--- IMPORTANT: Use adminToken
-            const res = await fetch('/api/careers/admin/branch', {
+            const res = await fetch(`${API_URL}/careers/admin/branch`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -121,7 +122,7 @@ const AdminCareersPage = () => {
         if (!window.confirm('Are you sure you want to delete this branch and all its roles? This action cannot be undone.')) { return; }
         try {
             const token = localStorage.getItem('adminToken'); // <--- IMPORTANT: Use adminToken
-            const res = await fetch(`/api/careers/admin/branch/${branchId}`, {
+            const res = await fetch(`${API_URL}/careers/admin/branch/${branchId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -137,7 +138,7 @@ const AdminCareersPage = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('adminToken'); // <--- IMPORTANT: Use adminToken
-            const res = await fetch(`/api/careers/admin/${selectedBranchForRole}/role`, {
+            const res = await fetch(`${API_URL}/careers/admin/${selectedBranchForRole}/role`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -161,7 +162,7 @@ const AdminCareersPage = () => {
         if (!editingRole) return;
         try {
             const token = localStorage.getItem('adminToken'); // <--- IMPORTANT: Use adminToken
-            const res = await fetch(`/api/careers/admin/${editingRole.branchId}/role/${editingRole.role._id}`, {
+            const res = await fetch(`${API_URL}/careers/admin/${editingRole.branchId}/role/${editingRole.role._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -184,7 +185,7 @@ const AdminCareersPage = () => {
         if (!window.confirm('Are you sure you want to delete this role?')) { return; }
         try {
             const token = localStorage.getItem('adminToken'); // <--- IMPORTANT: Use adminToken
-            const res = await fetch(`/api/careers/admin/${branchId}/role/${roleId}`, {
+            const res = await fetch(`${API_URL}/careers/admin/${branchId}/role/${roleId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

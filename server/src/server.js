@@ -78,11 +78,7 @@ app.use('/api/feedback', feedbackRoutes);
 
 
 // --- File System and Static Folders ---
-// Corrected uploadDir path calculation
-// __dirname: C:\Users\ASUS\Desktop\ayu arana care\test-app\test-app\test-app\server\src
-// To reach project root (test-app/test-app/test-app): go up 2 levels (src -> server -> test-app)
-const projectRootForUploads = path.resolve(__dirname, '..', '..');
-const uploadDir = path.join(projectRootForUploads, "uploads"); // This will be .../test-app/test-app/test-app/uploads
+const uploadDir = path.join(__dirname, 'uploads'); // Point to src/uploads
 
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });

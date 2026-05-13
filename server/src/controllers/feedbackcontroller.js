@@ -1,5 +1,5 @@
 // backend/controllers/feedbackController.js
-import Feedback from '../models/Feedback.js'; // <-- CHANGED from require, and added .js extension
+import Feedback from '../models/Feedback.js'; // Fixed casing for Linux
 
 // Use named exports for each function
 export const getAllFeedback = async (req, res) => {

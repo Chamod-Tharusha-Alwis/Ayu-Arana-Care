@@ -1,12 +1,55 @@
-# React + Vite
+# ⚙️ Installation & Setup
+Follow these steps to run the project locally on your machine.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Prerequisites
+Node.js installed on your machine.
 
-Currently, two official plugins are available:
+A MongoDB Atlas account and cluster.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Clone the Repository
+Bash
+git clone [https://github.com/Chamod-Tharusha-Alwis/Ayu-Arana-Care.git](https://github.com/Chamod-Tharusha-Alwis/Ayu-Arana-Care.git)
+cd Ayu-Arana-Care
+3. Backend Setup
+Navigate to the server directory, install dependencies, and configure your environment variables.
 
-## Expanding the ESLint configuration
+Bash
+cd server
+npm install
+Create a .env file in the root of the server folder and add the following variables:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Code snippet
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+MAIL_USER=your_email@gmail.com
+MAIL_PASS=your_email_app_password
+FRONTEND_URL=http://localhost:5173
+Start the backend server:
+
+Bash
+npm start
+
+4. Frontend Setup
+Open a new terminal window, ensure you are in the root project directory (AyuAranaCare), and install the frontend dependencies.
+
+Bash
+npm install
+Start the Vite development server:
+
+Bash
+npm run dev
+The frontend will typically run at http://localhost:5173.
+
+# ✨ Key Features
+Role-Based Authentication: Secure login for Admins, Staff, and Users/Family members using JWT.
+
+Resident Management: Track resident details, center assignments, and daily logs.
+
+Medical Records & Announcements: Dedicated modules for updating and viewing resident medical status.
+
+Membership & Payments: Handle facility memberships and process billing/payments.
+
+Communication: Integrated contact forms, feedback systems, and email notifications via Nodemailer.
+
+Careers Portal: Built-in module for viewing and applying for open positions at the care center.

@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 const sendConfirmationEmail = async (to, subject, htmlContent) => {
   const transporter = nodemailer.createTransport({
@@ -19,4 +19,4 @@ const sendConfirmationEmail = async (to, subject, htmlContent) => {
   await transporter.sendMail(mailOptions);
 };
 
-module.exports = sendConfirmationEmail;
+export default sendConfirmationEmail;

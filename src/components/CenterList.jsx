@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL, UPLOAD_URL } from '../config/api';
 
 const CenterList = () => {
   const [centers, setCenters] = useState([]);
@@ -11,7 +12,7 @@ const CenterList = () => {
     const fetchCenters = async () => {
       try {
         // *** FIX: Corrected API URL to remove /auth/ ***
-        const res = await axios.get("http://localhost:5000/api/center"); // <--- CHANGE THIS LINE
+        const res = await axios.get(`${API_URL}/center`); // <--- CHANGE THIS LINE
         setCenters(res.data);
       } catch (err) {
         console.error('Error fetching centers:', err);
@@ -35,7 +36,7 @@ const CenterList = () => {
       {centers.map((center, index) => (
         <div key={center._id || index} className="bg-white p-4 shadow rounded text-center">
           <img
-            src={`http://localhost:5000/uploads/${center.image}`}
+            src={`${UPLOAD_URL}/${center.image}`}
             alt={center.branchName}
             className="w-full h-40 object-cover rounded mb-3"
           />

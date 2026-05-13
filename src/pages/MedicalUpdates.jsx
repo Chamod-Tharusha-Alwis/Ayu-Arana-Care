@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment, useRef } from 'react'; // Added u
 import { Transition, Dialog } from '@headlessui/react';
 import { DocumentPlusIcon, ClockIcon, CheckCircleIcon, ArrowDownTrayIcon, CreditCardIcon, MegaphoneIcon, UserIcon } from '@heroicons/react/24/outline';
 import { useSpring, animated } from '@react-spring/web'; // Updated import for react-spring v10
+import { API_URL } from '../config/api';
 
 // --- Custom Hook for Scroll Animations (Copy from Home.jsx) ---
 const useInView = (options) => {
@@ -80,7 +81,7 @@ const PaymentModal = ({ isOpen, onClose, request, onPaymentSuccess }) => {
         alert("Payment Simulated: Payment processed successfully!");
 
         try {
-            const response = await fetch(`http://localhost:5000/api/medical/request/${request._id}/paymentStatus`, {
+            const response = await fetch(`${API_URL}/medical/request/${request._id}/paymentStatus`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ paymentStatus: 'Paid' })
@@ -151,7 +152,7 @@ export default function MedicalUpdatesPage() { // Renamed component for clarity
             return;
         }
         try {
-            const response = await fetch(`http://localhost:5000/api/medical/request/my/${id}`);
+            const response = await fetch(`${API_URL}/medical/request/my/${id}`);
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to fetch user requests');
@@ -167,7 +168,7 @@ export default function MedicalUpdatesPage() { // Renamed component for clarity
     // Function to fetch available checkup types
     const fetchCheckupTypes = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/medical/types');
+            const response = await fetch(API_URL + '/medical/types');
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to fetch checkup types');
@@ -183,7 +184,7 @@ export default function MedicalUpdatesPage() { // Renamed component for clarity
     // Function to fetch general medical announcements from admin
     const fetchMedicalAnnouncements = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/medical/status-updates'); // Corrected URL for general announcements
+            const response = await fetch(API_URL + '/medical/status-updates'); // Corrected URL for general announcements
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to fetch medical announcements');
@@ -203,7 +204,7 @@ export default function MedicalUpdatesPage() { // Renamed component for clarity
             return;
         }
         try {
-            const response = await fetch(`http://localhost:5000/api/medical/resident-statuses/${residentId}`); // Corrected URL for resident specific records
+            const response = await fetch(`${API_URL}/medical/resident-statuses/${residentId}`); // Corrected URL for resident specific records
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to fetch resident medical records');
@@ -316,7 +317,7 @@ export default function MedicalUpdatesPage() { // Renamed component for clarity
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/medical/request', {
+            const response = await fetch(`${API_URL}/medical/request`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

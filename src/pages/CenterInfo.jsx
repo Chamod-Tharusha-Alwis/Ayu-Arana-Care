@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL, UPLOAD_URL } from '../config/api';
 
 const CenterList = () => {
     const [centers, setCenters] = useState([]);
@@ -8,7 +9,7 @@ const CenterList = () => {
     useEffect(() => {
         const fetchCenters = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/api/center");
+                const res = await axios.get(`${API_URL}/center`);
                 setCenters(res.data);
             } catch (err) {
                 setError("Error fetching centers. Please try again later.");
@@ -27,7 +28,7 @@ const CenterList = () => {
                 {centers.map((center) => (
                     <div key={center._id} className="bg-white p-4 shadow-lg rounded-lg text-center transition-transform transform hover:scale-105">
                         <img
-                            src={`http://localhost:5000/uploads/${center.image}`}
+                            src={`${UPLOAD_URL}/${center.image}`}
                             alt={center.branchName}
                             className="w-full h-48 object-cover rounded-md mb-4"
                         />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import axios for HTTP requests
+import axios from 'axios';
+import { API_URL } from '../config/api';
 
 export default function Feedback() {
     const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export default function Feedback() {
         e.preventDefault();
         setSubmitStatus('submitting');
         try {
-            const response = await axios.post('http://localhost:5000/api/feedback', formData);
+            const response = await axios.post(`${API_URL}/feedback`, formData);
             if (response.status === 201) { // 201 Created
                 setSubmitStatus('success');
                 alert('Thank you for your feedback!');

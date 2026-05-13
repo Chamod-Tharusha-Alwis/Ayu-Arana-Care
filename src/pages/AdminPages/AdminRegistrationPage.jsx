@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_URL } from '../../config/api';
 import { UserIcon, AtSymbolIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 
 export default function AdminRegistrationPage() {
@@ -42,7 +43,7 @@ export default function AdminRegistrationPage() {
 
         try {
             // This fetch call targets the backend route we are about to create.
-            const response = await fetch('http://localhost:5000/api/admin/register', {
+            const response = await fetch(`${API_URL}/admin/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),

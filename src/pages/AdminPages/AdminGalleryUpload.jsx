@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from '../../config/api';
 
 const AdminGalleryUpload = () => {
   const [image, setImage] = useState(null);
@@ -12,7 +13,7 @@ const AdminGalleryUpload = () => {
     formData.append("description", description);
 
     try {
-      const res = await fetch("http://localhost:5000/api/gallery/upload", {
+      const res = await fetch(`${API_URL}/gallery/upload`, {
   method: "POST",
   body: formData,
 });

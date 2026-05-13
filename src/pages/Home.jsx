@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, useTransition, useTrail } from "@react-spring/web";
 import { ChevronLeftIcon, ChevronRightIcon, HeartIcon, ShieldCheckIcon, UserGroupIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
+import { API_URL } from '../config/api';
 
 // --- Slideshow Image Paths ---
 const slides = ['/images/slide1.jpg', 'images/slide2.jpg', 'images/slide3.jpg', 'images/slide4.jpg'];
@@ -90,7 +91,7 @@ export default function Home() {
     useEffect(() => {
         const fetchFeedbackForHome = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/feedback/home');
+                const response = await axios.get(`${API_URL}/feedback/home`);
                 setFeedbackData(response.data);
             } catch (error) {
                 console.error("Error fetching home page feedback:", error);

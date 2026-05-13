@@ -14,6 +14,7 @@ import {
     UserGroupIcon // For resident-specific medical records tab
 } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
+import { API_URL } from '../../config/api';
 
 // --- Reusable Utility Functions (kept same) ---
 const getStatusChip = (status) => {
@@ -72,7 +73,7 @@ export default function AdminMedicalPage() {
     // --- Data Fetching Functions ---
     const fetchCheckupTypes = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/medical/types');
+            const response = await fetch(`${API_URL}/medical/types`);
             if (!response.ok) throw new Error('Failed to fetch checkup types');
             const data = await response.json();
             setCheckupTypes(data);
@@ -84,7 +85,7 @@ export default function AdminMedicalPage() {
 
     const fetchAllRequests = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/medical/request/all');
+            const response = await fetch(`${API_URL}/medical/request/all`);
             if (!response.ok) throw new Error('Failed to fetch requests');
             const data = await response.json();
             setRequests(data);
@@ -98,7 +99,7 @@ export default function AdminMedicalPage() {
     const fetchMedicalAnnouncements = async () => {
         try {
             // Updated URL: This is from medicalAnnouncementsRoutes.js
-            const response = await fetch('http://localhost:5000/api/medical/status-updates');
+            const response = await fetch(`${API_URL}/medical/status-updates`);
             if (!response.ok) throw new Error('Failed to fetch medical announcements');
             const data = await response.json();
             setMedicalAnnouncements(data);
@@ -113,7 +114,7 @@ export default function AdminMedicalPage() {
         try {
             // This endpoint will return both the list of users and their existing records
             // Updated URL: This is from residentMedicalRoutes.js
-            const response = await fetch('http://localhost:5000/api/medical/resident-statuses/all');
+            const response = await fetch(`${API_URL}/medical/resident-statuses/all`);
             if (!response.ok) throw new Error('Failed to fetch resident medical records');
             const data = await response.json();
             setAllResidents(data.users); // Assuming backend sends { users: [], existingStatuses: [] }
@@ -145,7 +146,7 @@ export default function AdminMedicalPage() {
     // --- Action Handlers for Medical Requests Tab (kept same) ---
     const handleStatusUpdate = async (requestId, newStatus) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/medical/request/${requestId}/status`, {
+            const response = await fetch(`${API_URL}/medical/request/${requestId}/status`, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ status: newStatus })
@@ -162,7 +163,7 @@ export default function AdminMedicalPage() {
 
     const handlePaymentStatusUpdate = async (requestId, newStatus) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/medical/request/${requestId}/paymentStatus`, {
+            const response = await fetch(`${API_URL}/medical/request/${requestId}/paymentStatus`, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ paymentStatus: newStatus })
@@ -183,7 +184,7 @@ export default function AdminMedicalPage() {
         const reportFileUrl = e.target.reportFileUrl.value;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/medical/request/${requestId}/upload-report`, {
+            const response = await fetch(`${API_URL}/medical/request/${requestId}/upload-report`, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ reportFileUrl })
@@ -210,7 +211,7 @@ export default function AdminMedicalPage() {
         const typeId = modalInfo.data?._id;
         const isAdding = modalInfo.type === 'addType';
 
-        const url = isAdding ? 'http://localhost:5000/api/medical/types' : `http://localhost:5000/api/medical/types/${typeId}`;
+        const url = isAdding ? `${API_URL}/medical/types` : `${API_URL}/medical/types/${typeId}`;
         const method = isAdding ? 'POST' : 'PUT';
 
         try {
@@ -237,7 +238,7 @@ export default function AdminMedicalPage() {
     const handleTypeDelete = async (typeId) => {
         if (window.confirm("Are you sure you want to delete this checkup type? This cannot be undone.")) {
             try {
-                const response = await fetch(`http://localhost:5000/api/medical/types/${typeId}`, {
+                const response = await fetch(`${API_URL}/medical/types/${typeId}`, {
                     method: 'DELETE'
                 });
                 if (!response.ok) throw new Error('Failed to delete checkup type');
@@ -258,7 +259,7 @@ export default function AdminMedicalPage() {
         const updateId = modalInfo.data?._id;
         const isAdding = modalInfo.type === 'addAnnouncement';
 
-        const url = isAdding ? 'http://localhost:5000/api/medical/status-updates' : `http://localhost:5000/api/medical/status-updates/${updateId}`;
+        const url = isAdding ? `${API_URL}/medical/status-updates` : `${API_URL}/medical/status-updates/${updateId}`;
         const method = isAdding ? 'POST' : 'PUT';
 
         try {
@@ -285,7 +286,7 @@ export default function AdminMedicalPage() {
     const handleMedicalAnnouncementDelete = async (updateId) => {
         if (window.confirm("Are you sure you want to delete this medical announcement? This cannot be undone.")) {
             try {
-                const response = await fetch(`http://localhost:5000/api/medical/status-updates/${updateId}`, {
+                const response = await fetch(`${API_URL}/medical/status-updates/${updateId}`, {
                     method: 'DELETE'
                 });
                 if (!response.ok) throw new Error('Failed to delete medical announcement');
@@ -308,7 +309,7 @@ export default function AdminMedicalPage() {
         const recordId = modalInfo.data?._id;
         const isAdding = modalInfo.type === 'addResidentRecord';
 
-        const url = isAdding ? 'http://localhost:5000/api/medical/resident-statuses' : `http://localhost:5000/api/medical/resident-statuses/${recordId}`;
+        const url = isAdding ? `${API_URL}/medical/resident-statuses` : `${API_URL}/medical/resident-statuses/${recordId}`;
         const method = isAdding ? 'POST' : 'PUT';
 
         try {
@@ -335,7 +336,7 @@ export default function AdminMedicalPage() {
     const handleResidentMedicalRecordDelete = async (recordId) => {
         if (window.confirm("Are you sure you want to delete this resident medical record? This cannot be undone.")) {
             try {
-                const response = await fetch(`http://localhost:5000/api/medical/resident-statuses/${recordId}`, {
+                const response = await fetch(`${API_URL}/medical/resident-statuses/${recordId}`, {
                     method: 'DELETE'
                 });
                 if (!response.ok) throw new Error('Failed to delete resident medical record');

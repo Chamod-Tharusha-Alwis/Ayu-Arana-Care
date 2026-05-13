@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../../config/api';
 import { PencilIcon, TrashIcon, CheckCircleIcon, XMarkIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 export default function AdminFeedbackPage() {
@@ -17,7 +18,7 @@ export default function AdminFeedbackPage() {
     const fetchFeedback = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/feedback/all');
+            const response = await axios.get(`${API_URL}/feedback/all`);
             setFeedback(response.data);
             // Initialize selectedFeedbackIds based on current displayOnHome status
             const initiallySelected = response.data
@@ -58,7 +59,7 @@ export default function AdminFeedbackPage() {
             // Send the array of selected IDs to the backend
             // You will need a new or modified backend endpoint for this.
             // Example: PUT /api/feedback/update-home-display
-            const response = await axios.put('http://localhost:5000/api/feedback/update-home-display', {
+            const response = await axios.put(`${API_URL}/feedback/update-home-display`, {
                 feedbackIdsToDisplay: selectedFeedbackIds
             });
 
@@ -80,7 +81,7 @@ export default function AdminFeedbackPage() {
         }
 
         try {
-            const response = await axios.delete(`http://localhost:5000/api/feedback/${id}`);
+            const response = await axios.delete(`${API_URL}/feedback/${id}`);
             if (response.status === 200) {
                 alert('Feedback deleted successfully!');
                 fetchFeedback(); // Re-fetch to update the list and selected IDs

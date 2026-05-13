@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/UserContext.jsx';
+import { API_URL as GLOBAL_API_URL } from '../config/api';
 
 // Reusable Input Component for the forms
 const FormInput = ({ icon, label, name, type, value, onChange, required = true }) => {
@@ -93,12 +94,12 @@ export default function App() { // Changed to App for direct rendering in Canvas
         clearMessages();
         setLoading(true);
 
-        const API_URL = loginType === 'admin'
-            ? 'http://localhost:5000/api/admin/login'
-            : 'http://localhost:5000/api/auth/login';
+        const apiEndpoint = loginType === 'admin'
+            ? `${GLOBAL_API_URL}/admin/login`
+            : `${GLOBAL_API_URL}/auth/login`;
 
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(apiEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(loginData),
@@ -144,7 +145,7 @@ export default function App() { // Changed to App for direct rendering in Canvas
         setLoading(true);
         const { confirmPassword, ...payload } = registerData;
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(`${GLOBAL_API_URL}/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),

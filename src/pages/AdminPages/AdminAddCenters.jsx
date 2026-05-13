@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_URL } from '../../config/api';
 import { useAuth } from '../../context/UserContext';
 
 export default function AddCenterForm() {
@@ -42,7 +43,7 @@ export default function AddCenterForm() {
         formData.append("image", imageFile);
 
         try {
-            const response = await axios.post("http://localhost:5000/api/center", formData, {
+            const response = await axios.post(`${API_URL}/center`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${adminToken}`,

@@ -1,6 +1,7 @@
 // src/pages/AdminPages/AdminContactMessages.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../../config/api';
 // You might also need useAuth here if you want to check isAdminAuthenticated from context
 // import { useAuth } from '../../context/UserContext'; 
 
@@ -32,7 +33,7 @@ const AdminContactMessages = () => {
             return;
         }
 
-        const res = await axios.get('http://localhost:5000/api/contact', {
+        const res = await axios.get(`${API_URL}/contact`, {
           headers: {
             Authorization: `Bearer ${token}`, // Use the correct adminToken
           },
